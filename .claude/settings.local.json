@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Remove-Item \"d:\\\\claude-literature-review\\\\review_literature\\\\methodology-grouping-of-rag-literature.md\" -Confirm:$false)"
+    ]
+  }
+}
