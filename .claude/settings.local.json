@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "PowerShell(Remove-Item \"d:\\\\claude-literature-review\\\\review_literature\\\\methodology-grouping-of-rag-literature.md\" -Confirm:$false)",
-      "PowerShell(Rename-Item -Path \"d:\\\\claude-literature-review\\\\original_idea\\\\literature_review_revised.md\" -NewName \"literature_review_v0.md\")"
+      "PowerShell(Rename-Item -Path \"d:\\\\claude-literature-review\\\\original_idea\\\\literature_review_revised.md\" -NewName \"literature_review_v0.md\")",
+      "PowerShell(Remove-Item -Path \"d:\\\\claude-literature-review\\\\log\\\\literature_revision.md\" -Confirm:$false)"
     ]
   }
 }

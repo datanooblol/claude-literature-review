@@ -13,14 +13,17 @@ review_literature/      ← Synthesis workspace; one subfolder per idea
     section.md          ← Fleshed-out literature review prose
     archive/            ← Dated snapshots of section.md before each revision
       section-YYYY-MM-DD.md
-original_idea/          ← The user's own research paper and its evolving literature review
+original_idea/          ← The user's own research paper and its evolving sections
   first_draft.pdf       ← Source PDF of the user's paper
   first_draft.md        ← Markdown transcription of the full paper
-  literature_review_v0.md  ← First integrated revision (baseline)
-  literature_review_v1.md  ← Subsequent revisions (increment N on each rewrite)
+  literature_review_v0.md     ← Versioned rewrites of the literature review section
+  literature_review_v1.md     ← (increment N on each rewrite; v0 = baseline from draft)
+  research_objectives_v0.md   ← Versioned rewrites of the research objectives section
+  research_objectives_v1.md   ← (same convention; any paper section can be versioned)
 log/papers.md           ← Processing log — single source of truth
 log/overview.md         ← Quick digest: one card per paper (problem + conclusion)
-log/literature_revision.md ← Version history for original_idea/literature_review_vN.md
+log/revisions.md        ← Unified version history for all original_idea/vN files
+log/next_steps.md       ← Living priority queue: what's done, what's pending, what needs user input
 .claude/skills/         ← Custom slash commands (skills)
 ```
 
@@ -30,7 +33,7 @@ log/literature_revision.md ← Version history for original_idea/literature_revi
 3. **Log every paper.** All processed papers must appear in `log/papers.md` before moving on.
 4. **Keep all ideas.** Folders in `review_literature/` are working drafts — accumulate them, decide which to pursue later.
 5. **Archive before revising.** Before overwriting `section.md`, copy the current version to `archive/section-YYYY-MM-DD.md`. The `/draft-section` skill does this automatically.
-6. **Version the literature review.** Each rewrite of the user's integrated literature review is saved as a new file: `original_idea/literature_review_vN.md`. Never overwrite an existing version — always increment N. Log every version in `log/literature_revision.md`.
+6. **Version any revised paper section.** Each rewrite of any section extracted from `first_draft.md` is saved as `original_idea/<section-name>_vN.md`. `v0` is always the text extracted verbatim from `first_draft.md` (no edits). Never overwrite an existing version — always increment N. Log every version in `log/revisions.md`.
 
 ## Summary Template
 
@@ -90,42 +93,55 @@ After reading the summaries, work collaboratively:
 5. To revise: run `/draft-section <title>` again — the current `section.md` is archived automatically before overwriting
 6. Accumulate all ideas; revisit and select the strongest ones later
 
-### Phase 3 — Literature Review Revision (user's own paper)
-When revising the integrated literature review in `original_idea/`:
-1. Read `original_idea/first_draft.md` to understand current research objectives and gaps
-2. Read `log/literature_revision.md` to see what has been done in previous versions
-3. Discuss and agree on the structural plan before writing
-4. Write the new version as `original_idea/literature_review_vN.md` (N = next integer after the current highest)
-5. Append a new entry to `log/literature_revision.md` describing what changed and why
-6. Never delete or overwrite previous `vN` files — all versions are permanent
+### Phase 3 — Paper Section Revision (user's own paper)
+When revising any section of the user's paper in `original_idea/`:
+1. Read `original_idea/first_draft.md` to locate the current text for the section
+2. Read `log/revisions.md` to see what has already been done across all sections
+3. Discuss and agree on the plan before writing
+4. Write `v0` as a verbatim extract of the current text from `first_draft.md` (no edits)
+5. Write `v1` (or next N) as the revised version
+6. Append entries for both to `log/revisions.md`
+7. Never delete or overwrite previous `vN` files — all versions are permanent
 
-## Log Format (`log/literature_revision.md`)
+**Naming convention:** `original_idea/<section-name>_vN.md`
+- `literature_review_vN.md` — literature review section
+- `research_objectives_vN.md` — research statement, RQs, gaps, problem formulation
+- Any other section follows the same pattern
 
-Markdown table + per-version summary blocks:
+## Log Format (`log/revisions.md`)
+
+One file tracks all versioned artifacts. Each artifact has its own table and version blocks:
 
 ```markdown
-# Literature Review Version History
+# Paper Section Revision History
+
+## literature_review
 
 | Version | Date | Summary of Changes |
 |---------|------|--------------------|
 | v0 | YYYY-MM-DD | Brief one-line description |
 | v1 | YYYY-MM-DD | Brief one-line description |
 
----
-
-## v0 — YYYY-MM-DD
-
+### v0 — YYYY-MM-DD
 **File:** `original_idea/literature_review_v0.md`
 **Sections:** list section titles
-**Key changes:** what was added, removed, or restructured vs. the paper's original placeholder
+**Key changes:** what was added vs. the paper's original placeholder
 **Rationale:** why this version was written
+
+---
+
+## research_objectives
+
+| Version | Date | Summary of Changes |
+|---------|------|--------------------|
+| v0 | YYYY-MM-DD | Brief one-line description |
 ```
 
 ## What to Log
 - Paper processed → row in `log/papers.md` + card in `log/overview.md`
 - New idea created → `review_literature/<slug>/proposed.md`
 - Section drafted or revised → `review_literature/<slug>/section.md` (previous version auto-archived)
-- Literature review version written → new entry in `log/literature_revision.md`
+- Paper section version written → new entry in `log/revisions.md` under the correct artifact heading
 - Significant decisions → noted inside the relevant `proposed.md`
 
 Do NOT log: every file read, tool calls, internal reasoning, or minor edits.
