@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Remove-Item \"d:\\\\claude-literature-review\\\\review_literature\\\\methodology-grouping-of-rag-literature.md\" -Confirm:$false)"
+      "PowerShell(Remove-Item \"d:\\\\claude-literature-review\\\\review_literature\\\\methodology-grouping-of-rag-literature.md\" -Confirm:$false)",
+      "PowerShell(Rename-Item -Path \"d:\\\\claude-literature-review\\\\original_idea\\\\literature_review_revised.md\" -NewName \"literature_review_v0.md\")"
     ]
   }
 }
